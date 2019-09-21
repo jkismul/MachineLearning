@@ -1,0 +1,40 @@
+\usepackage{listings}
+
+
+
+\begin{lstlisting}[language=Python]
+def perc_mass(prob, Ls, k=1, simulations_per_p=10):
+    perc_areas = zeros(len(Ls))
+
+    for i, L in enumerate(Ls):
+        simulation_i = 0
+
+        while simulations_per_p > simulation_i:
+            lw, num = percolation_matrix(prob, L)
+            cluster_infos = regionprops(lw)
+
+            bboxs = array(
+                [cluster_infos[k]['bbox'] for k in range(len(cluster_infos))]
+            ).astype(int)
+
+            if len(bboxs) > 0:
+                # indecies where Xmax - Xmin >= Lx
+                jxs = argwhere(bboxs[:, 2] - bboxs[:, 0] >= L)
+                # indecies where Ymax - Ymin >= Ly
+                jys = argwhere(bboxs[:, 3] - bboxs[:, 1] >= L)
+                js = unique(vstack((jxs, jys)))
+
+                if len(js) > 0:
+                    perc_areas[i] += sum([cluster_infos[j]['area'] for j in js])
+
+            simulation_i += 1
+    perc_areas /= simulations_per_p
+    perc_areas *= k
+    return perc_areas
+
+
+pc = 0.59275
+Ls = array([2**k for k in range(4, 12)])
+
+Ms = perc_mass(pc, Ls)
+\end{lstlisting}

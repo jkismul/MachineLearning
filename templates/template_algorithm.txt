@@ -1,0 +1,26 @@
+\begin{algorithm}[H]
+  \caption{Monte Carlo and Metropolis}
+  \label{algo:Metropolis}
+   \begin{algorithmic}[1]
+     \For{$T$ given temperature}
+        \State set all expectation values
+        \State Set $E_{sum}=0, M_{sum}=0$
+        \State Initialize $E = -\sum_{\mean{k,l}}s_k s_l$, $M = \sum_i s_i$
+
+        \For{$i = 1,2,\hdots, M$} \begin{small}\Comment\tiny{M \rightarrow \text {number of MC cycles}}\end{small}
+          \For{$j = 1,2,\hdots, L$}
+          \For{$j = 1,2,\hdots, L$} \begin{small}\Comment\tiny{L\rightarrow \text {number spins}}\end{small}
+            \State \textbf{*}take random position x and y
+            \State \textbf{*}calculate $\Delta E$ for flipped spin
+            \State \textbf{*}initialize random number of $r$
+            \If{$r\leq e^{-\beta \Delta E}$} update $s_i$, $E$ and $M$ \begin{small}\Comment\tiny{Metropolis \rightarrow \text {Accept}}\end{small}
+            \EndIf
+            \If{$ r > e^{-\beta \Delta E}$} reject. back to line 8 \begin{small}\Comment\tiny{Metropolis \rightarrow \text {Reject}}\end{small}
+            \EndIf
+            \EndFor
+            \EndFor
+            \EndFor
+  \State Calculate expectation values. Save.
+  \EndFor
+   \end{algorithmic}
+\end{algorithm}

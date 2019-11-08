@@ -17,3 +17,5 @@ To run it, make sure to get the correct figure from the plt folder, and refer to
 
 The file NN_self.ipynb deals with the rest of the problem set.
 To run it, make sure to get the correct figure from the plt folder, and refer to it correctly in the code.
+
+The file TensorFlow.ipynb uses tensorflow to show that regularization makes no real difference.

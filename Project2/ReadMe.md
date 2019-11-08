@@ -8,7 +8,7 @@ to find a fit for Franke function (from project 1) and used these
 results to compare with how our neural network performed on this regression problem. 
 
 Getting started
-In this folder, Project 2, youll find the report for this problem in the root folder, 
+In this folder, Project 2, you'll find the report for this problem in the root folder, 
 source code and the dataset are in the folder scr. 
 There will be descriptions of classes and functions in the relevant notebooks. 
 
